@@ -1,7 +1,8 @@
-package com.yusufzengin.movieviewer
+package com.yusufzengin.movieviewer.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.yusufzengin.movieviewer.R
 
 class MainActivity : AppCompatActivity() {
 
