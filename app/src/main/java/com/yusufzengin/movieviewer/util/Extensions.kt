@@ -21,9 +21,10 @@ fun String.formatDate(): String? {
     return reformattedStr
 }
 
-fun ImageView.loadFromUrl(url: String) =
+fun ImageView.loadFromUrl(url: String, errorDrawable: Int = 0) =
     Glide.with(this.context.applicationContext)
         .load(url)
-        .transition(DrawableTransitionOptions.withCrossFade())
+        .error(errorDrawable)
+        //.transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 

@@ -10,25 +10,25 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "movies")
 data class Movie(
     @PrimaryKey
-    var id: Int,
-    var title: String,
-    var overview: String,
-    var adult: Boolean?,
-    var budget: Int?,
-    var homepage: String?,
-    var status: String?,
+    val id: Int,
+    val title: String,
+    val overview: String,
+    val adult: Boolean?,
+    val budget: Int?,
+    val homepage: String?,
+    val status: String?,
     @SerializedName("original_language")
-    var originalLanguage: String?,
+    val originalLanguage: String?,
     @SerializedName("original_title")
-    var originalTitle: String?,
+    val originalTitle: String?,
     @SerializedName("poster_path")
-    var posterPath: String?,
+    val posterPath: String?,
     @SerializedName("release_date")
-    var releaseDate: String?,
+    val releaseDate: String?,
     @SerializedName("vote_average")
-    var voteAverage: Double?,
+    val voteAverage: Double?,
     @SerializedName("vote_count")
-    var voteCount: Int?
+    val voteCount: Int?
 ) : Parcelable
 
 fun Movie.getPosterUrl() = "https://image.tmdb.org/t/p/w500/${this.posterPath}"

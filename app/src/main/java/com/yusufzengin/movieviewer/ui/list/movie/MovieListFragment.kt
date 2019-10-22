@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yusufzengin.movieviewer.R
@@ -29,7 +29,6 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.OnItemClickListener
     private val viewModel: MovieListViewModel by viewModels(factoryProducer = { factory })
 
     private val movieAdapter = MovieListAdapter()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,11 +60,9 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.OnItemClickListener
     }
 
     override fun onItemClicked(movie: Movie) {
-        val bundle = bundleOf(
-            "movieId" to movie.id,
-            "movieTitle" to movie.title
-        )
-        //findNavController().navigate(R.id.action_topMoviesDest_to_detailFragment, bundle)
+        val action = MovieListFragmentDirections
+            .actionToMovieDetail(movie.id, movie.title)
+        findNavController().navigate(action)
     }
 
 }
