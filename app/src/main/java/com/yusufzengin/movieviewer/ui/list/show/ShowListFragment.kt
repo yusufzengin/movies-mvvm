@@ -1,21 +1,35 @@
 package com.yusufzengin.movieviewer.ui.list.show
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.lifecycle.observe
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.yusufzengin.movieviewer.R
+import com.yusufzengin.movieviewer.model.data.Show
+import com.yusufzengin.movieviewer.ui.adapters.ShowListAdapter
+import com.yusufzengin.movieviewer.util.RecyclerViewDecoration
+import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.show_list_fragment.*
+import javax.inject.Inject
 
-class ShowListFragment : Fragment() {
+class ShowListFragment : DaggerFragment(), ShowListAdapter.OnItemClickListener {
 
     companion object {
         fun newInstance() = ShowListFragment()
     }
 
-    private lateinit var viewModel: ShowListViewModel
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+    private val viewModel: ShowListViewModel by viewModels(factoryProducer = { factory })
+
+    private val showAdapter = ShowListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +40,32 @@ class ShowListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ShowListViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        setUpRecyclerView()
+
+        viewModel.topShows.observe(this) {
+            showAdapter.submitList(it)
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        showAdapter.setOnItemClickListener(this)
+        val margin =
+            (resources.getDimension(R.dimen.rv_item_margin) * resources.displayMetrics.density).toInt()
+        show_list_rv.apply {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = showAdapter
+            addItemDecoration(RecyclerViewDecoration(margin))
+            setHasFixedSize(true)
+        }
+    }
+
+    override fun onItemClicked(show: Show) {
+        val bundle = bundleOf(
+            "showId" to show.id,
+            "showTitle" to show.originalName
+        )
+        //findNavController().navigate(R.id.action_topMoviesDest_to_detailFragment, bundle)
     }
 
 }

@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.yusufzengin.movieviewer.R
 import com.yusufzengin.movieviewer.model.data.Movie
+import com.yusufzengin.movieviewer.model.data.getPosterUrl
+import com.yusufzengin.movieviewer.util.formatDate
+import com.yusufzengin.movieviewer.util.loadFromUrl
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.ViewHolder>(
@@ -29,11 +31,9 @@ class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.ViewHolder>(
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie: Movie) {
-            Glide.with(view.context).load("https://image.tmdb.org/t/p/w500/${movie.posterPath}")
-                .error(R.drawable.ic_launcher_foreground)
-                .into(view.image)
+            itemView.image.loadFromUrl(movie.getPosterUrl())
             itemView.title_tv.text = movie.title
-            //itemView.release_date_tv.text = movie.releaseDate?.formatDate() ?: "-"
+            itemView.release_date_tv.text = movie.releaseDate?.formatDate() ?: "-"
             itemView.vote_average_tv.text = "Rating: ${movie.voteAverage.toString()}"
             itemView.setOnClickListener { listener.onItemClicked(movie) }
         }

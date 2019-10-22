@@ -29,3 +29,5 @@ data class Show(
     @SerializedName("poster_path")
     var posterPath: String?
 ) : Parcelable
+
+fun Show.getPosterUrl() = "https://image.tmdb.org/t/p/w500/${this.posterPath}"

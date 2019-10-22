@@ -30,3 +30,5 @@ data class Movie(
     @SerializedName("vote_count")
     var voteCount: Int?
 ) : Parcelable
+
+fun Movie.getPosterUrl() = "https://image.tmdb.org/t/p/w500/${this.posterPath}"
