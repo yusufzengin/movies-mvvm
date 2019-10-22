@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/movie_graph"
+        android:contentDescription="@string/title_movies"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="@string/title_movies" />
+
+    <item
+        android:id="@+id/show_graph"
+        android:contentDescription="@string/title_shows"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="@string/title_shows" />
+
+</menu>

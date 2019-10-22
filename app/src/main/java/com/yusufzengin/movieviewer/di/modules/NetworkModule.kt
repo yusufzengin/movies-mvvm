@@ -2,6 +2,7 @@ package com.yusufzengin.movieviewer.di.modules
 
 import com.yusufzengin.movieviewer.api.MovieApi
 import com.yusufzengin.movieviewer.api.ShowApi
+import com.yusufzengin.movieviewer.util.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -24,11 +25,19 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    fun provideTokenInterceptor(): TokenInterceptor {
+        return TokenInterceptor()
+    }
+
+    @Singleton
+    @Provides
     fun provideHttpClient(
-        logInterceptor: HttpLoggingInterceptor
+        logInterceptor: HttpLoggingInterceptor,
+        tokenInterceptor: TokenInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logInterceptor)
+            .addInterceptor(tokenInterceptor)
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)

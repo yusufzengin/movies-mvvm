@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MovieViewer</string>
+    <string name="title_shows">TV Shows</string>
+    <string name="title_movies">Movies</string>
 </resources>
