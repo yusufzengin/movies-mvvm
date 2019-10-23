@@ -3,6 +3,7 @@ package com.yusufzengin.movieviewer.di.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.yusufzengin.movieviewer.ui.detail.movie.MovieDetailViewModel
+import com.yusufzengin.movieviewer.ui.detail.show.ShowDetailViewModel
 import com.yusufzengin.movieviewer.ui.list.movie.MovieListViewModel
 import com.yusufzengin.movieviewer.ui.list.show.ShowListViewModel
 import dagger.Binds
@@ -28,6 +29,12 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieDetailViewModel::class)
     internal abstract fun bindMovieDetailViewModel(viewModel: MovieDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ShowDetailViewModel::class)
+    internal abstract fun bindShowDetailViewModel(viewModel: ShowDetailViewModel): ViewModel
+
 
 
 }

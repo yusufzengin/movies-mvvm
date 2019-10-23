@@ -3,11 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/show_graph"
-    app:startDestination="@id/showListFragment">
+    app:startDestination="@id/showListFragment"
+    tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/showListFragment"
         android:name="com.yusufzengin.movieviewer.ui.list.show.ShowListFragment"
         android:label="Trending Shows"
-        tools:layout="@layout/show_list_fragment" />
+        tools:layout="@layout/show_list_fragment">
+        <action
+            android:id="@+id/action_to_showDetailFragment"
+            app:destination="@id/showDetailFragment">
+            <argument
+                android:name="showId"
+                android:defaultValue="0"
+                app:argType="integer" />
+            <argument
+                android:name="showTitle"
+                android:defaultValue="-"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/showDetailFragment"
+        android:name="com.yusufzengin.movieviewer.ui.detail.show.ShowDetailFragment"
+        android:label="{showTitle}">
+        <argument
+            android:name="showId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>

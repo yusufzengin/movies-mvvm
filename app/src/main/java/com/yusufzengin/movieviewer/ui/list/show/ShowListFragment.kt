@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.lifecycle.observe
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.yusufzengin.movieviewer.R
 import com.yusufzengin.movieviewer.model.data.Show
 import com.yusufzengin.movieviewer.ui.adapters.ShowListAdapter
@@ -61,11 +60,9 @@ class ShowListFragment : DaggerFragment(), ShowListAdapter.OnItemClickListener {
     }
 
     override fun onItemClicked(show: Show) {
-        val bundle = bundleOf(
-            "showId" to show.id,
-            "showTitle" to show.originalName
-        )
-        //findNavController().navigate(R.id.action_topMoviesDest_to_detailFragment, bundle)
+        val action =
+            ShowListFragmentDirections.actionToShowDetailFragment(show.id, show.originalName)
+        findNavController().navigate(action)
     }
 
 }
