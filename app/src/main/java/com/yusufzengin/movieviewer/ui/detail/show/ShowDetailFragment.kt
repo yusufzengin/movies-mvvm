@@ -39,10 +39,7 @@ class ShowDetailFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val showId = args.showId
-        if (savedInstanceState == null) {
-            viewModel.fetchShowDetails(showId)
-        }
+        viewModel.setShowId(args.showId)
         viewModel.show.observe(this) {
             setUpUi(it)
         }

@@ -39,10 +39,7 @@ class MovieDetailFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val movieId = args.movieId
-        if (savedInstanceState == null) {
-            viewModel.fetchMovieDetails(movieId)
-        }
+        viewModel.setMovieId(args.movieId)
         viewModel.movie.observe(this) {
             setUpUi(it)
         }
