@@ -21,6 +21,8 @@ class MovieRepository @Inject constructor(
         movieDao.deleteMovie(movie)
     }
 
+    suspend fun getMovieDetails(id: Int) = movieDao.getMovie(id)
+
     suspend fun isMovieFavorite(id: Int) = movieDao.getMovie(id) != null
 
     fun getFavoriteMovies() = movieDao.getAllMovies()

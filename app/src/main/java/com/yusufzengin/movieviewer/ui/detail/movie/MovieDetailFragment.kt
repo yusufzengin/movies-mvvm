@@ -41,8 +41,21 @@ class MovieDetailFragment : DaggerFragment() {
 
         viewModel.setMovieId(args.movieId)
         viewModel.movie.observe(this) {
-            setUpUi(it)
+            setUpUi(it!!)
         }
+
+        viewModel.isFavorite.observe(this) {
+            if (it) {
+                detail_favorite_btn.setImageResource(R.drawable.ic_favorite)
+            } else {
+                detail_favorite_btn.setImageResource(R.drawable.ic_favorite_empty)
+            }
+        }
+
+        detail_favorite_btn.setOnClickListener {
+            viewModel.toggleFavorites()
+        }
+
     }
 
     private fun setUpUi(movie: Movie) {

@@ -28,7 +28,7 @@ class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.ViewHolder>(
         holder.bind(movie)
     }
 
-    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie: Movie) {
             itemView.image.loadFromUrl(movie.getPosterUrl())

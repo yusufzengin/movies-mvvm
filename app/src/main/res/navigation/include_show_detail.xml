@@ -1,0 +1,16 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/include_show_detail"
+    app:startDestination="@id/showDetailFragment"
+    tools:ignore="UnusedNavigation">
+    <fragment
+        android:id="@+id/showDetailFragment"
+        android:name="com.yusufzengin.movieviewer.ui.detail.show.ShowDetailFragment"
+        android:label="{showTitle}">
+        <argument
+            android:name="showId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+</navigation>

@@ -13,4 +13,10 @@
         android:icon="@android:drawable/ic_menu_camera"
         android:title="@string/title_shows" />
 
+    <item
+        android:id="@+id/favorites_graph"
+        android:contentDescription="@string/title_shows"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="@string/title_favorites" />
+
 </menu>

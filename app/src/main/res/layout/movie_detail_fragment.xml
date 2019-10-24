@@ -24,7 +24,7 @@
             android:layout_marginHorizontal="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/detail_favorite_btn"
             app:layout_constraintStart_toEndOf="@id/detail_image"
             app:layout_constraintTop_toTopOf="@id/detail_image" />
 
@@ -65,8 +65,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/star_off"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detail_image"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="@id/detail_image"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

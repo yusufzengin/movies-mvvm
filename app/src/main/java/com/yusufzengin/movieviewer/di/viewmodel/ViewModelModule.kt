@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.yusufzengin.movieviewer.ui.detail.movie.MovieDetailViewModel
 import com.yusufzengin.movieviewer.ui.detail.show.ShowDetailViewModel
+import com.yusufzengin.movieviewer.ui.list.favorites.FavoritesViewModel
 import com.yusufzengin.movieviewer.ui.list.movie.MovieListViewModel
 import com.yusufzengin.movieviewer.ui.list.show.ShowListViewModel
 import dagger.Binds
@@ -27,6 +28,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(FavoritesViewModel::class)
+    internal abstract fun bindFavoritesViewModel(viewModel: FavoritesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(MovieDetailViewModel::class)
     internal abstract fun bindMovieDetailViewModel(viewModel: MovieDetailViewModel): ViewModel
 
@@ -34,7 +40,6 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ShowDetailViewModel::class)
     internal abstract fun bindShowDetailViewModel(viewModel: ShowDetailViewModel): ViewModel
-
 
 
 }

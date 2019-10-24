@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorites_graph"
+    app:startDestination="@id/favoritesFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.yusufzengin.movieviewer.ui.list.favorites.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/favorites_fragment">
+        <action
+            android:id="@+id/action_favoritesFragment_to_movieDetail"
+            app:destination="@id/include_movie_detail"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit">
+            <argument
+                android:name="movieId"
+                android:defaultValue="0"
+                app:argType="integer" />
+            <argument
+                android:name="movieTitle"
+                android:defaultValue="-"
+                app:argType="string" />
+            <argument
+                android:name="movie"
+                app:argType="com.yusufzengin.movieviewer.model.data.Movie"
+                app:nullable="true" />
+        </action>
+        <action
+            android:id="@+id/action_favoritesFragment_to_showDetail"
+            app:destination="@id/include_show_detail"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit">
+            <argument
+                android:name="showId"
+                android:defaultValue="0"
+                app:argType="integer" />
+            <argument
+                android:name="showTitle"
+                android:defaultValue="-"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/include_movie_detail" />
+    <include app:graph="@navigation/include_show_detail" />
+</navigation>
