@@ -8,7 +8,7 @@ A sample app that uses [The Movie DB](https://www.themoviedb.org) api.
 
 * Android Architecture Components (LiveData, Room, Navigation Component)
 
-* Dagger2 (dagger-android)
+* Dagger2 ~~(dagger-android)~~
 
 * Retrofit
 
