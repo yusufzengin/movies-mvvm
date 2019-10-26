@@ -1,23 +1,25 @@
 package com.yusufzengin.movieviewer.ui.detail.movie
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
+import com.yusufzengin.movieviewer.MyApp
 import com.yusufzengin.movieviewer.R
 import com.yusufzengin.movieviewer.model.data.Movie
 import com.yusufzengin.movieviewer.model.data.getPosterUrl
 import com.yusufzengin.movieviewer.util.formatDate
 import com.yusufzengin.movieviewer.util.loadFromUrl
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import javax.inject.Inject
 
-class MovieDetailFragment : DaggerFragment() {
+class MovieDetailFragment : Fragment() {
 
     companion object {
         fun newInstance() = MovieDetailFragment()
@@ -34,6 +36,11 @@ class MovieDetailFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (context.applicationContext as MyApp).getAppComponent().newFragmentComponent().inject(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -2,13 +2,18 @@ package com.yusufzengin.movieviewer.di.modules
 
 import android.app.Application
 import android.content.Context
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 @Module
-abstract class AppModule {
+class AppModule(private val application: Application) {
 
-    @Binds
-    abstract fun bindContext(application: Application): Context
+    @Singleton
+    @Provides
+    fun bindContext(): Context = this.application.applicationContext
 
+    @Singleton
+    @Provides
+    fun bindApplication(): Application = this.application
 }

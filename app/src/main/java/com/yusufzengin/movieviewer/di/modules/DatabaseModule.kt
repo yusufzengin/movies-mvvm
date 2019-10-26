@@ -14,8 +14,8 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun bindDatabase(context: Context): AppDatabase {
-        return Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "movie")
+    fun provideDatabase(context: Context): AppDatabase {
+        return Room.databaseBuilder(context, AppDatabase::class.java, "movie")
             .build()
     }
 

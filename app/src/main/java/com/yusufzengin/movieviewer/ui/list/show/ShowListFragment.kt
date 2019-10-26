@@ -1,24 +1,26 @@
 package com.yusufzengin.movieviewer.ui.list.show
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.yusufzengin.movieviewer.MyApp
 import com.yusufzengin.movieviewer.R
 import com.yusufzengin.movieviewer.model.data.Show
 import com.yusufzengin.movieviewer.ui.adapters.ShowListAdapter
 import com.yusufzengin.movieviewer.util.RecyclerViewDecoration
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.show_list_fragment.*
 import javax.inject.Inject
 
-class ShowListFragment : DaggerFragment(), ShowListAdapter.OnItemClickListener {
+class ShowListFragment : Fragment(), ShowListAdapter.OnItemClickListener {
 
     companion object {
         fun newInstance() = ShowListFragment()
@@ -35,6 +37,11 @@ class ShowListFragment : DaggerFragment(), ShowListAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.show_list_fragment, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (context.applicationContext as MyApp).getAppComponent().newFragmentComponent().inject(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

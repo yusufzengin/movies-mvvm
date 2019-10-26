@@ -2,9 +2,11 @@ package com.yusufzengin.movieviewer.ui.list.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.yusufzengin.movieviewer.di.FragmentScope
 import com.yusufzengin.movieviewer.model.repository.MovieRepository
 import javax.inject.Inject
 
+@FragmentScope
 class MovieListViewModel @Inject constructor(private val repository: MovieRepository) :
     ViewModel() {
     val topMovies = liveData {

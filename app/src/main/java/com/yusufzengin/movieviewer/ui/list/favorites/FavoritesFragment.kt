@@ -1,25 +1,26 @@
 package com.yusufzengin.movieviewer.ui.list.favorites
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.yusufzengin.movieviewer.MyApp
 import com.yusufzengin.movieviewer.R
 import com.yusufzengin.movieviewer.model.data.Movie
 import com.yusufzengin.movieviewer.ui.adapters.MovieListAdapter
 import com.yusufzengin.movieviewer.util.RecyclerViewDecoration
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.favorites_fragment.*
 import javax.inject.Inject
 
-class FavoritesFragment : DaggerFragment(), MovieListAdapter.OnItemClickListener {
+class FavoritesFragment : Fragment(), MovieListAdapter.OnItemClickListener {
 
     companion object {
         fun newInstance() = FavoritesFragment()
@@ -46,6 +47,11 @@ class FavoritesFragment : DaggerFragment(), MovieListAdapter.OnItemClickListener
         viewModel.favorites.observe(this) {
             favoritesAdapter.submitList(it)
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (context.applicationContext as MyApp).getAppComponent().newFragmentComponent().inject(this)
     }
 
     private fun setUpRecyclerView() {
